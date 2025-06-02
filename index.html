@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Mouse Activity Comparator</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+</head>
+
+<body>
+  <h1>Mouse Activity Comparator</h1>
+
+  <!-- ─── controls ─── -->
+  <div id="controls">
+    <label>Left <select id="leftSelect"></select></label>
+    <label>Right <select id="rightSelect"></select></label>
+    <button id="swap" title="Swap sides">⇄</button>
+
+    <input id="timeSlider" type="range" min="0" max="20159" value="0">
+    <button id="playPause">▶︎</button>
+  </div>
+
+  <!-- ─── two wheels (videos) ─── -->
+  <div id="viz">
+    <video id="leftVid"  class="wheel" muted autoplay loop playsinline>
+      <source src="assets/mouse.mp4" type="video/mp4">
+    </video>
+    <video id="rightVid" class="wheel" muted autoplay loop playsinline>
+      <source src="assets/mouse.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- ─── activity timeline ─── -->
+  <svg id="chart" viewBox="0 0 600 200"></svg>
+
+  <script src="app.js"></script>
+</body>
+</html>
