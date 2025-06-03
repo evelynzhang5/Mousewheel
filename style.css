@@ -1,57 +1,86 @@
-/* ─── page layout ─────────────────────────────────────────────────────── */
-body{
-  font-family:system-ui,sans-serif;
-  margin:1.5rem auto;
-  max-width:760px;
-  text-align:center;
+body {
+  font-family: system-ui, sans-serif;
+  margin: 1.5rem auto;
+  max-width: 760px;
+  text-align: center;
 }
-h1{margin-bottom:1rem;}
 
-#controls{
-  display:flex;
-  flex-wrap:wrap;
-  gap:.8rem;
-  justify-content:center;
-  align-items:center;
-  margin-bottom:1rem;
+h1 { margin-bottom: 1rem; }
+h2 { margin-top: 1.5rem; }
+
+#controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .8rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
 }
+
 #controls select,
 #controls input[type=range],
-#controls button{
-  padding:.3rem .6rem;
-  font-size:.95rem;
+#controls button {
+  padding: .3rem .6rem;
+  font-size: .95rem;
 }
 
-/* ─── video wheels ────────────────────────────────────────────────────── */
-#viz{
-  display:flex;
-  justify-content:space-around;
-  gap:2rem;
-  flex-wrap:wrap;
-}
-.wheel{
-  width:200px;
-  aspect-ratio:1;
-  object-fit:cover;
-  display:block;
-  border:none;
-  outline:none;
-  background:transparent;
+#viz {
+  display: flex;
+  justify-content: space-around;
+  gap: 2rem;
+  flex-wrap: wrap;
 }
 
-/* ─── line chart ──────────────────────────────────────────────────────── */
-#chart{
-  margin-top:1.5rem;
-  max-width:100%;
-  height:auto;
+.wheel {
+  width: 200px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  border: none;
+  outline: none;
+  background: transparent;
 }
+
+/* Video gender styling */
+.wheel.female {
+  border: 5px solid hotpink;
+  box-shadow: 0 0 10px hotpink;
+}
+.wheel.male {
+  border: 5px solid blue;
+  box-shadow: 0 0 10px blue;
+}
+
+#chart {
+  margin-top: 1rem;
+  max-width: 100%;
+  height: auto;
+}
+
 .axis path,
-.axis line{
-  stroke:#999;
-  stroke-width:0.5;
-  shape-rendering:crispEdges;
+.axis line {
+  stroke: #999;
+  stroke-width: 0.5;
+  shape-rendering: crispEdges;
 }
-.line-left  { fill:none; stroke:#1f77b4; stroke-width:2; }
-.line-right { fill:none; stroke:#d62728; stroke-width:2; }
-#timeMarker { stroke:#000; stroke-width:2; pointer-events:none; }
-.overlay    { fill:transparent; cursor:ew-resize; }
+
+.line-left {
+  fill: none;
+  stroke-width: 2;
+}
+
+.line-right {
+  fill: none;
+  stroke-width: 2;
+}
+
+#timeMarker {
+  stroke: #000;
+  stroke-width: 2;
+  pointer-events: none;
+}
+
+.overlay {
+  fill: transparent;
+  cursor: ew-resize;
+}

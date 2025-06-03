@@ -18,8 +18,14 @@
 
     <input id="timeSlider" type="range" min="0" max="20159" value="0">
     <button id="playPause">▶︎</button>
-  </div>
 
+    <label>Metric:
+      <select id="metricSelect">
+        <option value="Activity">Activity</option>
+        <option value="Temp">Temp</option>
+      </select>
+    </label>
+    
   <!-- ─── two wheels (videos) ─── -->
   <div id="viz">
     <video id="leftVid"  class="wheel" muted autoplay loop playsinline>
@@ -31,6 +37,7 @@
   </div>
 
   <!-- ─── activity timeline ─── -->
+
   <svg id="chart" viewBox="0 0 600 200"></svg>
 
   <script src="app.js"></script>
