@@ -1,3 +1,6 @@
+/* style.css */
+
+/* ─── Global / layout ─── */
 body {
   font-family: system-ui, sans-serif;
   margin: 1.5rem auto;
@@ -24,33 +27,49 @@ h2 { margin-top: 1.5rem; }
   font-size: .95rem;
 }
 
-#viz {
-  display: flex;
-  justify-content: space-around;
-  gap: 2rem;
-  flex-wrap: wrap;
+/* ─── Race‐track & Wheel styling ─── */
+#wheel-race {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  margin-top: 30px;
 }
 
+.race-track {
+  position: absolute;
+  width: 100%;
+  height: 40px;
+  border-radius: 20px;
+  opacity: 0.25;
+  left: 0;
+}
+
+#leftTrack {
+  top: 20px;
+}
+
+#rightTrack {
+  bottom: 20px;
+}
+
+
+/* ─── Video “mouse” icons (called “wheel”) ─── */
 .wheel {
-  width: 200px;
-  aspect-ratio: 1;
-  object-fit: cover;
-  display: block;
-  border: none;
-  outline: none;
-  background: transparent;
+  position: absolute;
+  width: 50px;
+  height: 50px;
+  top: 10px;
+  left: 0;
+  z-index: 2;
+  transition: left 0.1s linear;
+
+  /* FLIP HORIZONTALLY so the mouse faces right */
+  transform-origin: center;
+  transform: scaleX(-1);
 }
 
-/* Video gender styling */
-.wheel.female {
-  border: 5px solid hotpink;
-  box-shadow: 0 0 10px hotpink;
-}
-.wheel.male {
-  border: 5px solid blue;
-  box-shadow: 0 0 10px blue;
-}
 
+/* ─── Chart styling ─── */
 #chart {
   margin-top: 1rem;
   max-width: 100%;
@@ -64,23 +83,49 @@ h2 { margin-top: 1.5rem; }
   shape-rendering: crispEdges;
 }
 
-.line-left {
-  fill: none;
-  stroke-width: 2;
+/* ─── Race‐track container (svg + video overlap) ─── */
+/* Track row layout */
+#race-track-container {
+  position: relative;
+  height: 160px;
+  margin-bottom: 20px;
 }
 
-.line-right {
-  fill: none;
-  stroke-width: 2;
+.track-row {
+  position: relative;
+  height: 80px;
+  margin-bottom: 0.5rem;
 }
 
+/* Gender-specific tracks */
+.track {
+  position: absolute;
+  height: 10px;
+  width: 100%;
+  top: 35px;
+  left: 0;
+  background-color: lightgray;
+  border-radius: 5px;
+}
+
+.track.male {
+  background-color: blue;
+}
+.track.female {
+  background-color: hotpink;
+}
+
+/* Video wheel */
+.wheel {
+  position: absolute;
+  top: -15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 #timeMarker {
-  stroke: #000;
-  stroke-width: 2;
+  stroke: black;
+  stroke-width: 2.5;
   pointer-events: none;
-}
-
-.overlay {
-  fill: transparent;
-  cursor: ew-resize;
 }
