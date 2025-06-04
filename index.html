@@ -1,52 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Mouse Activity Comparator</title>
-  <link rel="stylesheet" href="style.css">
-  <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mouse Treadmill Race</title>
+
+  <!-- Snoopy‐style comic font -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Main stylesheet -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- d3 for CSV parsing -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+
+  <!-- Anime.js for animation -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+
+  <!-- Popper.js (dependency of Tippy) -->
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <!-- Tippy.js for tooltips -->
+  <link
+    href="https://unpkg.com/tippy.js@6/dist/tippy.css"
+    rel="stylesheet"
+  />
+  <script src="https://unpkg.com/tippy.js@6"></script>
 </head>
-
 <body>
-  <h1>Mouse Activity Comparator</h1>
+  <header>
+    <h1>🐭 Mouse Treadmill Race 🏁</h1>
+  </header>
 
-  <!-- ─── controls ─── -->
-  <div id="controls">
-    <label>Left <select id="leftSelect"></select></label>
-    <label>Right <select id="rightSelect"></select></label>
-    <button id="swap" title="Swap sides">⇄</button>
-
-    <input id="timeSlider" type="range" min="0" max="20159" value="0">
-    <button id="playPause">▶︎</button>
-
-    <label>Metric:
-      <select id="metricSelect">
-        <option value="Activity">Activity</option>
-        <option value="Temp">Temp</option>
-      </select>
-    </label>
-  </div>
-
-  <!-- ─── race layout (right mouse on top track) ─── -->
-  <div id="race-track-container">
-    <div class="track-row">
-      <div id="rightTrack" class="track"></div>
-      <video id="wheelRight" class="wheel" muted autoplay loop playsinline>
-        <source src="assets/mouse.mp4" type="video/mp4">
-      </video>
-    </div>
-    <div class="track-row">
-      <div id="leftTrack" class="track"></div>
-      <video id="wheelLeft" class="wheel" muted autoplay loop playsinline>
-        <source src="assets/mouse.mp4" type="video/mp4">
-      </video>
-    </div>
-  </div>
+  <main>
+    <!-- Control panel -->
+    <section id="controls">
+      <!-- Row of preset buttons -->
+      <div class="preset-row">
+        <button class="preset-btn" data-preset="HALF">½ Male ½ Female</button>
+        <button class="preset-btn" data-preset="AVG">Avg Male vs Avg Female</button>
+        <button class="preset-btn" data-preset="ALLF">All Female</button>
+        <button class="preset-btn" data-preset="ALLM">All Male</button>
+        <button class="preset-btn" data-preset="CUSTOM">Custom Select</button>
+      </div>
   
+      <!-- Only shown if “Custom Select” is clicked -->
+      <!-- <div class="custom-row hidden">
+        <label for="mouse-select">Choose individual mice:</label>
+        <select id="mouse-select" multiple></select>
+      </div> -->
 
-  <!-- ─── activity timeline ─── -->
-  <svg id="chart" viewBox="0 0 600 200"></svg>
 
-  <script src="app.js"></script>
+          <!-- Only shown if “Custom Select” is clicked -->
+    <div class="custom-row hidden">
+      <label>Choose individual mice:</label>
+      <div id="mouse-checkboxes" class="checkbox-grid"></div>
+    </div>
+
+  
+      <!-- Buttons: Start / Pause / End / Restart -->
+      <div class="action-row">
+        <button id="start-button" disabled>▶️ Start Race</button>
+        <button id="pause-button" disabled>⏸ Pause</button>
+        <button id="end-button" disabled>⏹ End Race</button>
+        <button id="restart-button" disabled>🔄 Restart</button>
+      </div>
+    </section>
+
+    <div id="race-wrapper">
+      <div id="race-container"></div>
+    </div>
+
+    <!-- Leaderboards -->
+    <section id="leaderboards">
+      <div id="female-leaderboard">
+        <h3>Female Finishers</h3>
+        <ol></ol>
+      </div>
+      <div id="male-leaderboard">
+        <h3>Male Finishers</h3>
+        <ol></ol>
+      </div>
+    </section>
+  </main>
 </body>
+<script src="global.js" type="module"></script>
 </html>
